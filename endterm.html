@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #f0fdf4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .converter-card {
+            background: rgb(218, 137, 137);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #042e68;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #041f42;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .result-box {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-left: 5px solid #125dd7;
+        }
+
+        .result-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #0f172a;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="converter-card">
+        <h2>Celsius to Fahrenheit</h2>
+        
+        <div class="input-group">
+            <label for="celsius">Enter Celsius (°C)</label>
+            <input type="number" id="celsius" placeholder="e.g., 0" value="0" oninput="convertTemperature()">
+        </div>
+
+        <div class="result-box">
+            <p class="result-text" id="result">32.00 °F</p>
+        </div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            // Get the input value
+            const celsiusInput = document.getElementById('celsius').value;
+            const resultDisplay = document.getElementById('result');
+
+            // Handle empty input gracefully
+            if (celsiusInput === '') {
+                resultDisplay.textContent = '-- °F';
+                return;
+            }
+
+            // Convert string to number
+            const celsius = parseFloat(celsiusInput);
+
+            // Apply the formula: (C * 9/5) + 32
+            const fahrenheit = (celsius * 9 / 5) + 32;
+
+            // Display the result rounded to 2 decimal places
+            resultDisplay.textContent = `${fahrenheit.toFixed(2)} °F`;
+        }
+    </script>
+
+</body>
+</html>
